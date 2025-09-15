@@ -15,7 +15,7 @@ from telegram.ext import (
 )
 import os
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-ADMIN_ID = os.getenv("ADMIN")
+ADMIN_ID = int(os.getenv("ADMIN"))
 DB_PATH = "booking.db"
 TIME_SLOT_DURATION = 30  # минут
 WORK_START_HOUR = 10
