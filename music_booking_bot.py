@@ -13,11 +13,9 @@ from telegram.ext import (
     filters,
     ContextTypes,
 )
-
-
-# --- Настройки ---
-BOT_TOKEN = "7785020844:AAHF-ArdiySfgZgwI9HNtI6qxzEN9AqqCBM"  # 🔐 ЗАМЕНИТЕ НА СВОЙ!
-ADMIN_ID = 2106668502  # 👈 ЗАМЕНИТЕ НА СВОЙ TELEGRAM USER ID!
+import os
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+ADMIN_ID = os.getenv("ADMIN")
 DB_PATH = "booking.db"
 TIME_SLOT_DURATION = 30  # минут
 WORK_START_HOUR = 10
