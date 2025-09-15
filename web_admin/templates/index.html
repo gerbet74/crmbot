@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>📋 Все бронирования</h1>
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Пользователь</th>
+            <th>Специализация</th>
+            <th>Направление</th>
+            <th>Инструмент</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Статус</th>
+            <th>Цена</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for b in bookings %}
+        <tr>
+            <td>{{ b['id'] }}</td>
+            <td>{{ b['username'] or b['first_name'] or 'ID:' + b['user_id'] }}</td>
+            <td>{{ b['specialization'] }}</td>
+            <td>{{ b['direction'] }}</td>
+            <td>{{ b['instrument'] or '-' }}</td>
+            <td>{{ b['date'] }}</td>
+            <td>{{ b['time_slot'] }}</td>
+            <td>
+                {% if b['status'] == 'confirmed' %}
+                    <span style="color: green;">✅ Подтверждено</span>
+                {% elif b['status'] == 'pending_payment' %}
+                    <span style="color: orange;">⏳ Ожидает оплаты</span>
+                {% else %}
+                    <span style="color: red;">❌ Отменено</span>
+                {% endif %}
+            </td>
+            <td>{{ b['price'] }} ₽</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p style="margin-top: 30px; color: #666;">
+    💡 Обновляется автоматически — как только бот получает новую бронь.
+</p>
+{% endblock %}
